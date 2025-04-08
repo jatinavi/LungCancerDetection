@@ -16,7 +16,7 @@ X = []
 Y = []
 
 for i, cat in enumerate(classes):
-    images = glob(f'{path}/{cat}/*.jpeg')
+    images = glob(f'{/content/LungCancerDetection}/{cat}/*.jpeg')
     
     for image in images:
         img = cv2.imread(image)
