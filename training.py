@@ -9,21 +9,21 @@ SPLIT = 0.2
 EPOCHS = 10
 BATCH_SIZE = 64
 
-path = "path_to_dataset_folder"  # <- update this with the actual path
-classes = ['class1', 'class2']   # <- replace with actual class names like ['benign', 'malignant']
-
-X = []
-Y = []
+path = "/content/LungCancerDetection/LungCancerDataset"  # <-- make sure this is the actual folder containing class subfolders
+classes = ['benign', 'malignant']  # <-- adjust based on your actual folder names
 
 for i, cat in enumerate(classes):
-    images = glob(f'{/content/LungCancerDetection}/{cat}/*.jpeg')
+    images = glob(f'{path}/{cat}/*.jpeg') + glob(f'{path}/{cat}/*.jpg') + glob(f'{path}/{cat}/*.png')
     
+    print(f"Class: {cat} | Found {len(images)} images")  # Debug info
+
     for image in images:
         img = cv2.imread(image)
         if img is not None:
             img = cv2.resize(img, (IMG_SIZE, IMG_SIZE))
             X.append(img)
             Y.append(i)
+
 
 X = np.asarray(X)
 one_hot_encoded_Y = pd.get_dummies(Y).values
