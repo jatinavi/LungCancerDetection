@@ -8,13 +8,13 @@ X = []
 Y = []
 
 for i, cat in enumerate(classes):
-images = glob(f'{path}/{cat}/*.jpeg')
+	images = glob(f'{path}/{cat}/*.jpeg')
 
-for image in images:
-	img = cv2.imread(image)
+	for image in images:
+		img = cv2.imread(image)
 	
-	X.append(cv2.resize(img, (IMG_SIZE, IMG_SIZE)))
-	Y.append(i)
+		X.append(cv2.resize(img, (IMG_SIZE, IMG_SIZE)))
+		Y.append(i)
 
 X = np.asarray(X)
 one_hot_encoded_Y = pd.get_dummies(Y).values
